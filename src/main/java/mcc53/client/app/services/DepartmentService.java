@@ -1,0 +1,37 @@
+package mcc53.client.app.services;
+
+import mcc53.client.app.models.Department;
+import mcc53.client.app.models.ResponseMessage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+@Service
+public class DepartmentService {
+    private RestTemplate restTemplate;
+
+    @Value("${baseUrl}/department")
+    private String baseUrl;
+
+    @Autowired
+
+    public DepartmentService(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+
+    public ResponseMessage<Department> getAll() {
+        ResponseEntity<ResponseMessage<Department>> response = restTemplate
+                .exchange(baseUrl, HttpMethod.GET, null,
+                        new ParameterizedTypeReference<ResponseMessage<Department>>() {});
+        return response.getBody();
+    }
+
+    public Department create(Department department) {
+        ResponseEntity<Department> res = restTemplate.postForEntity(baseUrl, department, Department.class);
+        return res.getBody();
+    }
+}
