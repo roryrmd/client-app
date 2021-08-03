@@ -10,11 +10,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
+
 @Service
 public class DepartmentService {
     private RestTemplate restTemplate;
 
-    @Value("${baseUrl}/department")
+    @Value("${api.baseUrl}/department")
     private String baseUrl;
 
     @Autowired
@@ -23,11 +25,16 @@ public class DepartmentService {
         this.restTemplate = restTemplate;
     }
 
-    public ResponseMessage<Department> getAll() {
-        ResponseEntity<ResponseMessage<Department>> response = restTemplate
+    public List<Department> getAll() {
+        ResponseEntity<List<Department>> response = restTemplate
                 .exchange(baseUrl, HttpMethod.GET, null,
-                        new ParameterizedTypeReference<ResponseMessage<Department>>() {});
+                        new ParameterizedTypeReference<List<Department>>() {});
         return response.getBody();
+    }
+
+    public Department getById(Long id) {
+        ResponseEntity<Department> res = restTemplate.getForEntity(baseUrl+"/"+id, Department.class);
+        return res.getBody();
     }
 
     public Department create(Department department) {

@@ -28,6 +28,11 @@ public class EmployeeService {
                 .exchange(baseUrl, HttpMethod.GET, null,
                         new ParameterizedTypeReference<List<Employee>>() {
                         });
+        return res.getBody();
+    }
+
+    public Employee getById(Long id){
+        ResponseEntity<Employee> res = restTemplate.getForEntity(baseUrl+"/"+id, Employee.class);
 
         return res.getBody();
     }

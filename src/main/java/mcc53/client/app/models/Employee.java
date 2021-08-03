@@ -15,7 +15,7 @@ public class Employee {
     private String lastName;
     private String email;
     private String address;
+    private Long department;
     private User user;
-    private Department department;
     private List<Project> projects;
 }

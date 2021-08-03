@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/employee")
+@RequestMapping("/employees")
 public class EmployeeController {
     private EmployeeService employeeService;
 
@@ -18,19 +18,25 @@ public class EmployeeController {
     @GetMapping
     public String getAll(Model model) {
         model.addAttribute("employees", employeeService.getAll());
-        return "employee/index";
+        return "home/employees/index";
     }
 
-    @GetMapping("/create")
-    public String formEmployee(Model model) {
+    @GetMapping("/{id}")
+    public String getById(@PathVariable("id") Long id, Model model){
+        model.addAttribute("employee", employeeService.getById(id));
+        return "home/employees/get-by-id";
+    }
+
+    @GetMapping("/add")
+    public String getForm(Model model){
         Employee employee = new Employee();
         model.addAttribute("employee", employee);
-        return "employee/form";
+        return "home/employees/create-emp";
     }
 
     @PostMapping("/save")
-    public String saveEmployee(@ModelAttribute("employee") Employee employee) {
+    public String saveEmployee(@ModelAttribute("employee") Employee employee){
         employeeService.create(employee);
-        return "redirect:/employee";
+        return "redirect:/employees";
     }
 }

@@ -1,0 +1,51 @@
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/css/bootstrap.min.css" integrity="sha512-P5MgMn1jBN01asBgU0z60Qk4QxiXo86+wlFahKrsQf37c9cro517WzVSPPV1tDKzhku2iJ2FVgL67wG03SGnNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Request Employee</title>
+</head>
+<body>
+
+    <div class="counter">
+
+    </div>
+    <div class="container-fluid">
+        <h2 style="text-align: center; margin: 20px">List Employee</h2>
+        <a th:href="@{/employees/add}" class="btn btn-success mb-2">Add Employee</a>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Address</th>
+                <th scope="col">Username</th>
+<!--                <th scope="col">Department</th>-->
+                <th scope="col">Projects</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="employee : ${employees}">
+                <td th:text="${employee.firstName}"></td>
+                <td th:text="${employee.lastName}"></td>
+                <td th:text="${employee.email}"></td>
+                <td th:text="${employee.address}"></td>
+                <td th:text="${employee.user?.username}"></td>
+<!--                <td th:text="${employee.department['name']}"></td>-->
+                <td>
+                    <table class="table table-striped">
+                        <tbody th:each="proj : ${employee.projects}">
+                        <tr >
+                            <td th:text="${proj.name}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
