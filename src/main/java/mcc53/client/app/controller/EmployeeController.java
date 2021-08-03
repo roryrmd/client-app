@@ -1,6 +1,7 @@
 package mcc53.client.app.controller;
 
 import mcc53.client.app.models.Employee;
+import mcc53.client.app.models.EmployeeCreate;
 import mcc53.client.app.services.EmployeeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,20 +24,39 @@ public class EmployeeController {
 
     @GetMapping("/{id}")
     public String getById(@PathVariable("id") Long id, Model model){
-        model.addAttribute("employee", employeeService.getById(id));
+        model.addAttribute("employees", employeeService.getById(id));
         return "home/employees/get-by-id";
     }
 
     @GetMapping("/add")
     public String getForm(Model model){
-        Employee employee = new Employee();
-        model.addAttribute("employee", employee);
+        EmployeeCreate employeeCreate = new EmployeeCreate();
+        model.addAttribute("employee", employeeCreate);
         return "home/employees/create-emp";
     }
 
     @PostMapping("/save")
-    public String saveEmployee(@ModelAttribute("employee") Employee employee){
-        employeeService.create(employee);
+    public String saveEmployee(EmployeeCreate employeeCreate){
+        employeeService.create(employeeCreate);
+        return "redirect:/employees";
+    }
+
+    @GetMapping("/update/{id}")
+    public String updateForm(@PathVariable("id") Long id, Model model){
+        Employee employee = employeeService.getById(id);
+        model.addAttribute("employee", employee);
+        return "/home/employees/update";
+    }
+
+    @PostMapping("update/{id}")
+    public String saveForm(@PathVariable("id") Long id, @ModelAttribute("employee") Employee employee){
+        employeeService.update(id, employee);
+        return "redirect:/employees";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteEmployee(@PathVariable("id") Long id){
+        employeeService.delete(id);
         return "redirect:/employees";
     }
 }

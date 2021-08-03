@@ -1,7 +1,6 @@
 package mcc53.client.app.services;
 
 import mcc53.client.app.models.Department;
-import mcc53.client.app.models.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -39,6 +38,7 @@ public class DepartmentService {
 
     public Department create(Department department) {
         ResponseEntity<Department> res = restTemplate.postForEntity(baseUrl, department, Department.class);
+        System.out.println(res.getBody());
         return res.getBody();
     }
 }

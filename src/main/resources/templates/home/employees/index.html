@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/css/bootstrap.min.css" integrity="sha512-P5MgMn1jBN01asBgU0z60Qk4QxiXo86+wlFahKrsQf37c9cro517WzVSPPV1tDKzhku2iJ2FVgL67wG03SGnNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <title>Request Employee</title>
 </head>
 <body>
@@ -16,23 +18,27 @@
         <table class="table table-striped">
             <thead>
             <tr>
+                <th scope="col">ID</th>
                 <th scope="col">First Name</th>
                 <th scope="col">Last Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Address</th>
                 <th scope="col">Username</th>
-<!--                <th scope="col">Department</th>-->
+                <th scope="col">Department</th>
                 <th scope="col">Projects</th>
+                <th scope="col">Action</th>
+
             </tr>
             </thead>
             <tbody>
             <tr th:each="employee : ${employees}">
+                <td th:text="${employee.id}"></td>
                 <td th:text="${employee.firstName}"></td>
                 <td th:text="${employee.lastName}"></td>
                 <td th:text="${employee.email}"></td>
                 <td th:text="${employee.address}"></td>
                 <td th:text="${employee.user?.username}"></td>
-<!--                <td th:text="${employee.department['name']}"></td>-->
+                <td th:text="${employee.department['name']}"></td>
                 <td>
                     <table class="table table-striped">
                         <tbody th:each="proj : ${employee.projects}">
@@ -41,6 +47,13 @@
                         </tr>
                         </tbody>
                     </table>
+                </td>
+                <td>
+                    <div>
+                        <a class="btn btn-info" th:href="@{/employees/{id}(id=${employee.id})}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                        <a class="btn btn-info" th:href="@{/employees/update/{id}(id=${employee.id})}"><i class="far fa-edit"></i></a>
+                        <a class="btn btn-info" th:href="@{/employees/delete/{id}(id=${employee.id})}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    </div>
                 </td>
             </tr>
             </tbody>
