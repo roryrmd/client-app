@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/css/bootstrap.min.css" integrity="sha512-P5MgMn1jBN01asBgU0z60Qk4QxiXo86+wlFahKrsQf37c9cro517WzVSPPV1tDKzhku2iJ2FVgL67wG03SGnNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Title</title>
+</head>
+<body>
+    <div class="container">
+
+        <div class="card" style="width: 50rem;">
+            <div class="card-body">
+                <h3 style="text-align: center; margin: 20px">Detail Employe</h3>
+                <p>EmployeeID : <span th:text="${employees.id}"></span></p>
+                <p>Username : <span th:text="${employees.user?.username}"></span></p>zz
+                <p>Full Name: <span th:text="${employees.firstName} + ${employees.lastName}"></span></p>
+                <p>First Name: <span th:text="${employees.firstName}"></span></p>
+                <p>Last Name: <span th:text="${employees.lastName}"></span></p>
+                <p>Email: <span th:text="${employees.email}"></span></p>
+                <p>Address: <span th:text="${employees.address}"></span></p>
+                <p>Department ID: <span th:text="${employees.department.id}"></span></p>
+                <!--                <div th:each="projs : ${employees.projects}">-->
+<!--                    <p>Project <span th:text="${projs.projectId} + ': '"> </span><span th:text="${projs.projectName}"> </span></p>-->
+<!--                </div>-->
+                <a th:href="@{/employees/delete/{id}(id=${employees.id})}" class="btn btn-danger">Delete Employee</a>
+                <a th:href="@{/employees}" class="btn btn-info">Back to Home</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
