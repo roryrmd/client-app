@@ -21,20 +21,20 @@ public class DepartmentController {
     @GetMapping
     public String getAll(Model model) {
         model.addAttribute("departments", departmentService.getAll());
-        return "home/departments/index";
+        return "departments/index";
     }
 
     @GetMapping("/{id}")
     public String getById(@PathVariable("id") Long id, Model model){
         model.addAttribute("department", departmentService.getById(id));
-        return "home/departments/detail-department";
+        return "departments/detail-department";
     }
 
     @GetMapping("/form-department")
     public String getForm(Model model){
         Department department = new Department();
         model.addAttribute("department",department);
-        return "home/departments/create-dept";
+        return "departments/create-dept";
     }
 
     @PostMapping("/save")

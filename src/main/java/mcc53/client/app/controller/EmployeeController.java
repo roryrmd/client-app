@@ -19,20 +19,20 @@ public class EmployeeController {
     @GetMapping
     public String getAll(Model model) {
         model.addAttribute("employees", employeeService.getAll());
-        return "home/employees/index";
+        return "employees/index";
     }
 
     @GetMapping("/{id}")
     public String getById(@PathVariable("id") Long id, Model model){
         model.addAttribute("employees", employeeService.getById(id));
-        return "home/employees/get-by-id";
+        return "employees/get-by-id";
     }
 
     @GetMapping("/add")
     public String getForm(Model model){
         EmployeeCreate employeeCreate = new EmployeeCreate();
         model.addAttribute("employee", employeeCreate);
-        return "home/employees/create-emp";
+        return "employees/create-emp";
     }
 
     @PostMapping("/save")
@@ -45,7 +45,7 @@ public class EmployeeController {
     public String updateForm(@PathVariable("id") Long id, Model model){
         Employee employee = employeeService.getById(id);
         model.addAttribute("employee", employee);
-        return "/home/employees/update";
+        return "/employees/update";
     }
 
     @PostMapping("update/{id}")
