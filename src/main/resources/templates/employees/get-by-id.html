@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/css/bootstrap.min.css" integrity="sha512-P5MgMn1jBN01asBgU0z60Qk4QxiXo86+wlFahKrsQf37c9cro517WzVSPPV1tDKzhku2iJ2FVgL67wG03SGnNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Title</title>
+    <title>Detail Employee</title>
 </head>
 <body>
     <div class="container">
 
         <div class="card" style="width: 50rem;">
             <div class="card-body">
-                <h3 style="text-align: center; margin: 20px">Detail Employe</h3>
+                <h3 style="text-align: center; margin: 20px">Detail Employee</h3>
                 <p>EmployeeID : <span th:text="${employees.id}"></span></p>
                 <p>Username : <span th:text="${employees.user?.username}"></span></p>zz
                 <p>Full Name: <span th:text="${employees.firstName} + ${employees.lastName}"></span></p>

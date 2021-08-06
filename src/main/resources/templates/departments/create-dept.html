@@ -12,7 +12,7 @@
             <div class="col-md-12 html-editor-align-center">
                 <hr>
                 <h3>Add New Departments</h3>
-                <form action="#" th:action="@{/department/save}" th:object="${department}" method="POST">
+                <form action="#" th:action="@{/department/save}" th:object="${departments}" method="POST">
                     <div class="form-group">
                         <input type="text" th:field="*{name}" placeholder="Name of Department" class="form-control">
                     </div>

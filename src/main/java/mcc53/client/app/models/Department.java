@@ -4,14 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Department {
+public class Department implements Serializable {
     private Long id;
     private String name;
-
-    public Department(String name) {
-        this.name = name;
-    }
 }
