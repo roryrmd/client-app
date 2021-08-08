@@ -9,13 +9,17 @@
         <div id="main">
             <div th:replace=":: #department-list">
                 <div class="container-fluid" id="department-list">
-                    <h2 style="text-align: center; margin: 20px">Department List</h2>
-                    <button class="btn btn-sm btn-success"
-                            data-bs-toggle="modal"
-                            data-bs-target="#departmentModal"
-                            th:onclick="create()">
-                        <i class="fa fa-sm fa-plus"></i>&nbsp;Add New
-                    </button>
+                    <div class="d-flex justify-content-between">
+                        <h3>Department Table</h3>
+                        <button class="btn btn-sm btn-success"
+                                data-bs-toggle="modal"
+                                data-bs-target="#departmentModal"
+                                th:onclick="create()"
+                        >
+                            <i class="fa fa-sm fa-plus"></i>&nbsp;Add New
+                        </button>
+                    </div>
+                    <br>
                     <table class="table table-striped" id="table">
                         <thead>
                         <tr>

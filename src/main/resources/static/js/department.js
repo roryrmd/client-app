@@ -22,8 +22,8 @@ $(document).ready(function () {
                 "render": function ( data, type, row, meta ) {
                     return `
               <div class="d-flex justify-content-center">
-                  <a class="btn btn-info" href="#" onclick="detail(${data})"><i class="fa fa-eye" aria-hidden="true"></i></a>|
-                  <a class="btn btn-info" href="#" onclick="edit(${data})"><i class="far fa-edit"></i></a>|
+                  <a class="btn btn-info" href="#" onclick="detail(${data})"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                  <a class="btn btn-info" href="#" onclick="edit(${data})"><i class="far fa-edit"></i></a>
                   <a class="btn btn-info" href="#" onclick="deleteById(${data})"><i class="fa fa-trash" aria-hidden="true"></i></a>
               </div>
             `;
@@ -31,8 +31,59 @@ $(document).ready(function () {
             }
         ]
     });
+    // setInterval(function () {
+    //     data.ajax.reload(null, false);
+    // }, 2000);
     submit();
 });
+
+// var data = $('#table').DataTable({
+//     ajax: {
+//         url: 'http://localhost:8081/department',
+//         dataSrc: ''
+//     },
+//     "columns": [
+//         {"targets": 0,
+//             "data": "id",
+//             "render": function (data, type, row, meta) {
+//                 return `<div class="row center"><div class="col">${data}</div></div>`;
+//             }
+//         },
+//         {"targets": 1,
+//             "data": "name",
+//             "render": function (data, type, row, meta) {
+//                 return `<div class="row center"><div class="col">${data}</div></div>`;
+//             }
+//         },
+//         {"targets": 2,
+//             "data": "id",
+//             "render": function (data, type, row, meta) {
+//                 return `<div class="action-button">
+//                         <button
+//                             class="btn btn-sm btn-primary"
+//                             data-bs-toggle="modal"
+//                             data-bs-target="#departmentModal"
+//                             onclick="detail(${data})"
+//                         >
+//                             <i class="fa fa-sm fa-eye"></i>
+//                         </button>
+//                         <button class="btn btn-sm btn-warning text-white"
+//                             data-bs-toggle="modal"
+//                             data-bs-target="#departmentModal"
+//                             onclick="edit(${data})"
+//                         >
+//                             <i class="fa fa-sm fa-edit"></i>
+//                         </button>
+//                         <button class="btn btn-sm btn-danger"
+//                             onclick="deleteById(${data})"
+//                         >
+//                             <i class="fa fa-sm fa-trash"></i>
+//                         </button>
+//                     </div>`;
+//             }
+//         }
+//     ]
+// });
 
 function submit() {
     $('form').submit((e) => {
@@ -60,13 +111,13 @@ function submit() {
                 var _this = this;
                 $.ajax({
                     type: "POST",
-                    url: `/department/create`,
+                    url: `http://localhost:8081/department/`,
                     contentType: 'application/json',
                     data: JSON.stringify(department),
                     dataType: 'json',
                     success: (data) => {
                         success('department created');
-                        $('#table_department').DataTable().ajax.reload(null, false);
+                        $('#table').DataTable().ajax.reload(null, false);
                     }
                 });
             }
@@ -194,11 +245,11 @@ function deleteById(id) {
     question("Do you want to delete this department?", "department deleted", "Delete", () => {
         $.ajax({
             type: "DELETE",
-            url: `/department/${id}`,
+            url: `http://localhost:8081/department/${id}`,
             dataType: 'json',
             success: (data) => {
                 success('department deleted');
-                location.reload();
+                $('#table').DataTable().ajax.reload(null, false);
             }
         });
     });
