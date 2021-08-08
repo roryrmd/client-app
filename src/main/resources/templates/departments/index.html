@@ -10,7 +10,12 @@
             <div th:replace=":: #department-list">
                 <div class="container-fluid" id="department-list">
                     <h2 style="text-align: center; margin: 20px">Department List</h2>
-                    <a th:href="@{/department/form-department}" class="btn btn-success mb-2">Add Department</a>
+                    <button class="btn btn-sm btn-success"
+                            data-bs-toggle="modal"
+                            data-bs-target="#departmentModal"
+                            th:onclick="create()">
+                        <i class="fa fa-sm fa-plus"></i>&nbsp;Add New
+                    </button>
                     <table class="table table-striped" id="table">
                         <thead>
                         <tr>
@@ -20,23 +25,52 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="department : ${departments}">
-                            <td th:text="${department.id}"></td>
-                            <td th:text="${department.name}"></td>
-                            <td>
-                                <div>
-                                    <a class="btn btn-info" th:href="@{/department/{id}(id=${department.id})}"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                    <a class="btn btn-info" th:href="@{/department/update/{id}(id=${department.id})}"><i class="far fa-edit"></i></a>
-                                    <a class="btn btn-info" th:href="@{/department/delete/{id}(id=${department.id})}"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                                </div>
-                            </td>
-                        </tr>
+<!--                        <tr th:each="department : ${departments}">-->
+<!--                            <td th:text="${department.id}"></td>-->
+<!--                            <td th:text="${department.name}"></td>-->
+<!--                            <td>-->
+<!--                                <div>-->
+<!--                                    <a class="btn btn-info" th:href="@{/department/{id}(id=${department.id})}"><i class="fa fa-eye" aria-hidden="true"></i></a>-->
+<!--                                    <a class="btn btn-info" th:href="@{/department/update/{id}(id=${department.id})}"><i class="far fa-edit"></i></a>-->
+<!--                                    <a class="btn btn-info" th:href="@{/department/delete/{id}(id=${department.id})}"><i class="fa fa-trash" aria-hidden="true"></i></a>-->
+<!--                                </div>-->
+<!--                            </td>-->
+<!--                        </tr>-->
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-<div th:replace="_layout :: frag-script"></div>
+
+    <div class="modal fade" id="departmentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Department Form</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form action="#" method="POST" class="needs-validation" novalidate>
+                        <div class="mb-3">
+                            <label class="form-label">Department Name</label>
+                            <input type="text" class="form-control input-data" id="deptname" required>
+                            <div class="invalid-feedback">
+                                Please input title
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" id="submitButton" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="_layout :: frag-script"></div>
+
 </body>
 </html>
