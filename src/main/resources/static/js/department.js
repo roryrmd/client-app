@@ -250,6 +250,9 @@ function deleteById(id) {
             success: (data) => {
                 success('department deleted');
                 $('#table').DataTable().ajax.reload(null, false);
+            },
+            error: (data) => {
+                error("department failed to delete");
             }
         });
     });
