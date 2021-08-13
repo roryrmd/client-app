@@ -11,13 +11,21 @@
                 <div class="container-fluid" id="department-list">
                     <div class="d-flex justify-content-between">
                         <h3>Department Table</h3>
-                        <button class="btn btn-sm btn-success"
-                                data-bs-toggle="modal"
-                                data-bs-target="#departmentModal"
-                                th:onclick="create()"
-                        >
-                            <i class="fa fa-sm fa-plus"></i>&nbsp;Add New
-                        </button>
+                            <div>
+                                <button class="btn btn-sm btn-success"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#departmentModal"
+                                        th:onclick="create()"
+                                >
+                                    <i class="fa fa-sm fa-plus"></i>&nbsp;Add New
+                                </button>
+                                <button class="btn btn-sm btn-danger"
+                                        data-bs-toggle="modal"
+                                        th:onclick="logout()"
+                                >
+                                    <i class="fa fa-sm fa-sign-out-alt"></i>&nbsp;Logout
+                                </button>
+                            </div>
                     </div>
                     <br>
                     <table class="table table-striped" id="table">

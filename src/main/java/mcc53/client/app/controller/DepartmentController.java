@@ -3,6 +3,7 @@ package mcc53.client.app.controller;
 import mcc53.client.app.models.Department;
 import mcc53.client.app.services.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -49,6 +50,12 @@ public class DepartmentController {
     @DeleteMapping("/{id}")
     public @ResponseBody String delete(@PathVariable("id") Long id) {
         return departmentService.delete(id);
+    }
+
+    @PostMapping("/logout")
+    public @ResponseBody String logout() {
+        SecurityContextHolder.getContext().setAuthentication(null);
+        return "redirect:/logout";
     }
 
 }
