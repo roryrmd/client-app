@@ -14,6 +14,7 @@ function loginProcess() {
         contentType: 'application/json',
         success: (data) => {
             console.log(data);
+            setToken(dataLogin.username, dataLogin.password);
             location.href="/dashboard"
         },
         error: function (xhr, err, e) {

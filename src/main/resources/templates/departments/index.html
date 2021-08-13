@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head th:replace="_layout :: head_layout">
+<head th:replace="layout/_layout :: head_layout">
     <meta charset="UTF-8">
     <title id="title">Department List</title>
 </head>
 <body>
-    <div th:replace="_layout :: main_layout">
+    <div th:replace="layout/_layout :: main_layout">
         <div id="main">
             <div th:replace=":: #department-list">
                 <div class="container-fluid" id="department-list">
@@ -74,7 +74,8 @@
         </div>
     </div>
 
-    <div th:replace="_layout :: frag-script"></div>
+    <script src="/js/localStorage.js"></script>
+    <div th:replace="layout/_layout :: frag-script"></div>
 
 </body>
 </html>

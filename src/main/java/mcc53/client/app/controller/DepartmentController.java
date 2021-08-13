@@ -22,7 +22,7 @@ public class DepartmentController {
 
     @GetMapping()
     public String getAll(Model model) {
-        model.addAttribute("datas", departmentService.getAll());
+//        model.addAttribute("datas", departmentService.getAll());
         return "/departments/index";
     }
 

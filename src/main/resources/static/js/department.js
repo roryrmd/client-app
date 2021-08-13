@@ -1,11 +1,14 @@
 var department = {};
 var deptId;
 
+    console.log(getToken());
+
 $(document).ready(function () {
     var table= $('#table').DataTable({
         ajax : {
             url : 'http://localhost:8081/department',
-            dataSrc : ''
+            dataSrc : '',
+            beforeSend: addRequestHeader()
         },
         "columns": [
             {
@@ -261,8 +264,9 @@ function deleteById(id) {
 function getById(id) {
     $.ajax({
         type: "GET",
-        url: `/department/${id}`,
+        url: `http://localhost:8081/department/${id}`,
         dataType: 'json',
+        beforeSend: addRequestHeader(),
         success: (data) => {
             deptId = id;
             department.name = data.name;
